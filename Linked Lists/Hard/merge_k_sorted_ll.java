@@ -48,9 +48,6 @@ class Solution {
             
             Pair p = pq.remove();
             
-            if(temp==null)
-                break;
-            
             temp.next = p.node;
             temp = temp.next;
             
