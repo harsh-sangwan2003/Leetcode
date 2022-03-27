@@ -1,3 +1,4 @@
+
 // { Driver Code Starts
 //Initial Template for Java
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ class Node {
     }
 }
 
-class GfG {
+public class burning_tree {
 
     static Node buildTree(String str) {
 
