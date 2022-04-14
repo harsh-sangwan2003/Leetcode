@@ -1,16 +1,18 @@
 class Solution {
     public boolean checkPowersOfThree(int n) {
-
-        while (n != 0) {
-
-            int rem = n % 3;
-
-            if (rem == 2)
-                return false;
-
-            n /= 3;
-        }
-
-        return n == 0;
+        
+        return helper(n,1);
+    }
+    
+    public boolean helper(int n, int x){
+        
+        if(x>n || n<0) return false;
+        
+        if(x==n || n==0) return true;
+        
+        boolean op1 = helper(n-x,x*3);
+        boolean op2 = helper(n,x*3);
+        
+        return (op1||op2);
     }
 }
