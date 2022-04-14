@@ -1,25 +1,29 @@
 class StockSpanner {
-
-    ArrayList<Integer> list;
-
+    
+    ArrayList<Integer> data;
     public StockSpanner() {
-
-        list = new ArrayList<>();
+        
+        data = new ArrayList<>();
     }
-
+    
     public int next(int price) {
-
-        int nod = 1;
-        int idx = list.size() - 1;
-
-        while (idx >= 0 && list.get(idx) <= price) {
-
-            nod++;
+        
+        int idx = data.size()-1;
+        int count = 1;
+        
+        while(idx>=0){
+            
+            if(data.get(idx)>price)
+                break;
+            
+            else
+                count++;
+            
             idx--;
         }
-
-        list.add(price);
-        return nod;
+        
+        data.add(price);
+        return count;
     }
 }
 
