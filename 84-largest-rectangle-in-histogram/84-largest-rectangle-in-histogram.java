@@ -1,12 +1,5 @@
 class Solution {
     
-    public void display(int[] arr){
-        
-        for(int val : arr)
-            System.out.print(val + " ");
-        
-        System.out.println();
-    }
     
     public int largestRectangleArea(int[] arr) {
         
@@ -29,8 +22,6 @@ class Solution {
             st.push(i);
         }
         
-        display(nsel);
-        
         st = new Stack<>();
         int[] nser = new int[arr.length];
         nser[arr.length-1] = arr.length;
@@ -49,8 +40,7 @@ class Solution {
             
             st.push(i);
         }
-        
-        display(nser);
+    
         
         int max_area = 0;
         
