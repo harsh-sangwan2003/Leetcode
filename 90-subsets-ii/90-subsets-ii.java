@@ -14,16 +14,19 @@ class Solution {
         
         if(idx==nums.length){
             
-            if(!res.contains(list))
-                res.add(list);
+            res.add(list);
             
             return;
         }
         
+        
         list.add(nums[idx]);
+        if(!res.contains(list))
         helper(nums,idx+1,new ArrayList<>(list),res);
         
+           
         list.remove(list.size()-1);
         helper(nums,idx+1,new ArrayList<>(list),res);
+    
     }
 }
