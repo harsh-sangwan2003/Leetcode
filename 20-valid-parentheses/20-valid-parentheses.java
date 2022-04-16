@@ -1,14 +1,14 @@
 class Solution {
     public boolean isValid(String s) {
         
-        Stack<Character> st = new Stack<>();
+        Stack<Character>st = new Stack<>();
         boolean flag = true;
         
         for(int i=0; i<s.length(); i++){
             
             char ch = s.charAt(i);
             
-            if(ch=='(' || ch=='[' || ch=='{')
+            if(ch=='(' || ch=='{' || ch=='[')
                 st.push(ch);
             
             else if(ch==')'){
@@ -39,9 +39,10 @@ class Solution {
         return st.size()==0;
     }
     
-    public boolean check(Stack<Character> st, char op){
+    public boolean check(Stack<Character> st, char ch){
         
-        if(st.size()==0 || st.peek()!=op) return false;
+        if(st.size()==0 || st.peek()!=ch)
+            return false;
         
         st.pop();
         return true;
