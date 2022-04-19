@@ -4,20 +4,20 @@ class Solution {
         int i = 0;
         int j = s.length()-1;
         
-        while(i<=j){
+        while(i<j){
             
-            if(!Character.isLetterOrDigit(s.charAt(i)))
+            int st = s.charAt(i);
+            int et = s.charAt(j);
+            
+            if(!Character.isLetterOrDigit(st))
                 i++;
             
-            else if(!Character.isLetterOrDigit(s.charAt(j)))
+            else if(!Character.isLetterOrDigit(et))
                 j--;
             
             else{
                 
-                char st = s.charAt(i);
-                char et = s.charAt(j);
-                
-                if(Character.toLowerCase(st) != Character.toLowerCase(et))
+                if(Character.toLowerCase(st)!=Character.toLowerCase(et))
                     return false;
                 
                 i++;
