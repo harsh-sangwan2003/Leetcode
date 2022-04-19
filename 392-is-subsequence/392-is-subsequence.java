@@ -7,11 +7,19 @@ class Solution {
             
             char ch = s.charAt(i);
             
-            j = t.indexOf(ch,j+1);
+            j = getIdx(t,ch,j+1);
             
             if(j==-1) return false;
         }
         
         return true;
+    }
+    
+    public int getIdx(String s, char ch, int st){
+        
+        for(int i=st; i<s.length(); i++)
+            if(s.charAt(i)==ch) return i;
+        
+        return -1;
     }
 }
