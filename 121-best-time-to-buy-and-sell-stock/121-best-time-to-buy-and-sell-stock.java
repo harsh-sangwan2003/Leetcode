@@ -7,11 +7,7 @@ class Solution {
         for(int i=1; i<prices.length; i++){
             
             int currp = prices[i] - min;
-            
-            if(maxp<currp){
-                
-                maxp = currp;
-            }
+            maxp = Math.max(currp,maxp);
             
             min = Math.min(min,prices[i]);
         }
