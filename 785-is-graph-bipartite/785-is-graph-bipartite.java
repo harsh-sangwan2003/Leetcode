@@ -46,9 +46,7 @@ class Solution {
             
             int size = q.size();
             
-            while(size-->0){
-                
-                Pair top = q.remove();
+            Pair top = q.remove();
                 
                 if(visit[top.vtx]==-1){
                     
@@ -73,7 +71,6 @@ class Solution {
                         q.add(new Pair(e,1-top.clr));
                     }
                 }
-            }
         }
         
         return true;
