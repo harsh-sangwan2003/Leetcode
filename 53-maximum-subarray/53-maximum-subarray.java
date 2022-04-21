@@ -6,14 +6,13 @@ class Solution {
         
         for(int val : nums){
             
-            currsum += val;
-            max_sum = Math.max(currsum,max_sum);
-            
             if(currsum<0)
             {
                 currsum = 0;
             }
             
+            currsum += val;
+            max_sum = Math.max(currsum,max_sum);
         }
         
         return max_sum;
