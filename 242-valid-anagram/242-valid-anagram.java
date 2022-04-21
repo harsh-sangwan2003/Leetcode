@@ -10,24 +10,15 @@ class Solution {
             
             char ch = t.charAt(i);
             
-            if(map.containsKey(ch)){
-                
-                j = s.indexOf(ch,map.get(ch));
-                
-                if(j==-1)
-                    return false;
-                
-                map.put(ch,j+1);
-            }
+            if(map.containsKey(ch))
+                j = s.indexOf(ch,map.get(ch)+1);
             
-            else{
-                
+            else
                 j = s.indexOf(ch,0);
-                
-                if(j==-1) return false;
-                
-                map.put(ch,j+1);
-            }
+            
+            if(j==-1) return false;
+            
+            map.put(ch,j);
         }
         
         return true;
