@@ -11,10 +11,10 @@ class Solution {
             char ch = t.charAt(i);
             
             if(map.containsKey(ch))
-                j = s.indexOf(ch,map.get(ch)+1);
+                j = findIdx(s,ch,map.get(ch)+1);
             
             else
-                j = s.indexOf(ch,0);
+                j = findIdx(s,ch,0);
             
             if(j==-1) return false;
             
@@ -22,5 +22,17 @@ class Solution {
         }
         
         return true;
+    }
+    
+    public int findIdx(String s, char op, int st){
+        
+        for(int i=st; i<s.length(); i++){
+            
+            char ch = s.charAt(i);
+            
+            if(ch==op) return i;
+        }
+        
+        return -1;
     }
 }
