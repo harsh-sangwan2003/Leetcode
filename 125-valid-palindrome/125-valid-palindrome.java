@@ -6,8 +6,8 @@ class Solution {
         
         while(i<j){
             
-            int st = s.charAt(i);
-            int et = s.charAt(j);
+            char st = s.charAt(i);
+            char et = s.charAt(j);
             
             if(!Character.isLetterOrDigit(st))
                 i++;
