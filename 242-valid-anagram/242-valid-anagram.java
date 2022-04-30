@@ -1,7 +1,8 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
         
-        if(s.length()!=t.length()) return false;
+        if(s.length()!=t.length())
+            return false;
         
         HashMap<Character,Integer> map = new HashMap<>();
         int j = 0;
@@ -11,28 +12,17 @@ class Solution {
             char ch = t.charAt(i);
             
             if(map.containsKey(ch))
-                j = findIdx(s,ch,map.get(ch)+1);
+                j = s.indexOf(ch,map.get(ch)+1);
             
             else
-                j = findIdx(s,ch,0);
+                j = s.indexOf(ch,0);
             
-            if(j==-1) return false;
+            if(j==-1)
+                return false;
             
             map.put(ch,j);
         }
         
         return true;
-    }
-    
-    public int findIdx(String s, char op, int st){
-        
-        for(int i=st; i<s.length(); i++){
-            
-            char ch = s.charAt(i);
-            
-            if(ch==op) return i;
-        }
-        
-        return -1;
     }
 }
