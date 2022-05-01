@@ -10,19 +10,59 @@
 
 class Solution {
     
+    public ArrayList<TreeNode> find(TreeNode root, TreeNode node){
+        
+        if(root==null)
+            return new ArrayList<>();
+        
+        if(root.val==node.val){
+            
+            ArrayList<TreeNode> bres = new ArrayList<>();
+            bres.add(root);
+            return bres;
+        }
+        
+        if(root.val<node.val){
+            
+            ArrayList<TreeNode> right = find(root.right,node);
+            
+            if(right.size()!=0){
+                
+                right.add(root);
+                return right;
+            }
+        }
+        
+        else{
+            
+            ArrayList<TreeNode> left = find(root.left,node);
+            
+            if(left.size()!=0){
+                
+                left.add(root);
+                return left;
+            }
+        }
+        
+        return new ArrayList<>();
+    }
+    
     
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
-        if(root==null)
-            return null;
+        ArrayList<TreeNode> l1 = find(root,p);
+        ArrayList<TreeNode> l2 = find(root,q);
         
-        if(root.val>p.val && root.val>q.val)
-            return lowestCommonAncestor(root.left,p,q);
+        int i = l1.size()-1;
+        int j = l2.size()-1;
         
-        else if(root.val<p.val && root.val<q.val)
-            return lowestCommonAncestor(root.right,p,q);
+        while(i>=0 && j>=0 && l1.get(i)==l2.get(j))
+        {
+            i--;
+            j--;
+        }
         
-        else
-            return root;
+        i++;
+        return l1.get(i);
     }
 }
