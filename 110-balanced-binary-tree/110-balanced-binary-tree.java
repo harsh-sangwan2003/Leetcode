@@ -15,32 +15,40 @@
  */
 class Solution {
     
-    static boolean flag;
+    public class Pair{
+        
+        int ht;
+        boolean flag;
+        
+        Pair(){
+            
+        }
+        
+        Pair(int ht, boolean flag){
+            
+            this.ht = ht;
+            this.flag = flag;
+        }
+    }
     
     public boolean isBalanced(TreeNode root) {
         
-        flag = true;
-        
-        helper(root);
-        
-        return flag;
+        Pair ans = helper(root);
+        return ans.flag;
     }
     
-    public int helper(TreeNode root){
+    public Pair helper(TreeNode root){
         
         if(root==null)
-            return -1;
+            return new Pair(-1,true);
         
-        int lh = helper(root.left);
-        int rh = helper(root.right);
+        Pair lp = helper(root.left);
+        Pair rp = helper(root.right);
         
-        int delta = Math.abs(lh-rh);
+        Pair mp = new Pair();
+        mp.ht = Math.max(lp.ht,rp.ht) + 1;
+        mp.flag = lp.flag && rp.flag && (Math.abs(lp.ht-rp.ht)<=1);
         
-        if(delta>1 || !flag)
-        {
-            flag = false;
-        }
-        
-        return Math.max(lh,rh) + 1;
+        return mp;
     }
 }
