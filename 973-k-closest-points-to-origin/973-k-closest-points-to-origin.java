@@ -1,65 +1,21 @@
 class Solution {
-    
-    public double distance(int x, int y){
-        
-        double dist = (double)(Math.sqrt(y*y + x*x));
-        
-        return dist;
-    }
-    
-    public class Pair{
-        
-        int x;
-        int y;
-        double dist;
-        
-        Pair(){
-            
-        }
-        
-        Pair(int x, int y, double dist){
-            
-            this.x = x;
-            this.y = y;
-            this.dist = dist;
-        }
-    }
-    
     public int[][] kClosest(int[][] points, int k) {
         
-        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((a,b)->{
-            
-            if(a.dist>b.dist)
-                return -1;
-            
-            else
-                return 1;
-        });
+        PriorityQueue<int[] > maxHeap = new PriorityQueue<>((a,b)->(b[0]*b[0] + b[1]*b[1]) - (a[0]*a[0] + a[1]*a[1]));
         
-    
-        for(int i=0; i<points.length; i++){
+        for(int[] point : points){
             
-            double dist = distance(points[i][0],points[i][1]);
+            maxHeap.add(point);
             
-            if(pq.size()<k)
-                pq.add(new Pair(points[i][0],points[i][1],dist));
-            
-            else if(dist<pq.peek().dist){
-                
-                pq.remove();
-                pq.add(new Pair(points[i][0],points[i][1],dist));
-            }
+            if(maxHeap.size()>k)
+                maxHeap.remove();
         }
         
-        int[][] res = new int[pq.size()][2];
-        int idx = 0;
+        int[][] res = new int[k][2];
         
-        while(pq.size()!=0){
+        while(k-->0){
             
-            Pair rm = pq.remove();
-            res[idx][0] = rm.x;
-            res[idx][1] = rm.y;
-            idx++;
+            res[k] = maxHeap.remove();
         }
         
         return res;
