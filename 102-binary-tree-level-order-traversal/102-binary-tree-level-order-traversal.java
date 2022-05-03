@@ -16,34 +16,24 @@
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         
-        if(root==null)
-            return new ArrayList<>();
-        
-        Queue<TreeNode> q = new ArrayDeque<>();
         List<List<Integer>> res = new ArrayList<>();
         
-        q.add(root);
-        
-        while(q.size()!=0){
-            
-            int sz = q.size();
-            List<Integer> curr = new ArrayList<>();
-            
-            while(sz-->0){
-                
-                TreeNode node = q.remove();
-                curr.add(node.val);
-                
-                if(node.left!=null)
-                    q.add(node.left);
-                
-                if(node.right!=null)
-                    q.add(node.right);
-            }
-            
-            res.add(curr);
-        }
+        solve(root,res,0);
         
         return res;
+    }
+    
+    public void solve(TreeNode root, List<List<Integer>> res, int lvl){
+        
+        if(root==null)
+            return;
+        
+        if(lvl==res.size())
+            res.add(new ArrayList<>());
+        
+        res.get(lvl).add(root.val);
+        
+        solve(root.left,res,lvl+1);
+        solve(root.right,res,lvl+1);
     }
 }
