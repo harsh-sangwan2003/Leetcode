@@ -10,7 +10,7 @@ class Solution {
     
     private void helper(int[] arr, int idx, int tar, List<Integer> list, List<List<Integer>> res){
         
-        if(tar==0 && !res.contains(list))
+        if(tar==0)
             res.add(list);
         
         for(int i=idx; i<arr.length; i++){
