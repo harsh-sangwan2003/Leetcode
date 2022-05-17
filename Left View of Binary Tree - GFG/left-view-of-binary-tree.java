@@ -136,17 +136,13 @@ class Tree
       while(q.size()!=0){
           
           int sz = q.size();
-          boolean flag = true;
           
-          while(sz-->0){
+          for(int i=0; i<sz; i++){
               
               Node node = q.remove();
               
-              if(flag)
-              {
-                  flag = false;
-                  list.add(node.data);
-              }
+              if(i==0)
+              list.add(node.data);
               
               if(node.left!=null)
               q.add(node.left);
