@@ -15,39 +15,38 @@
  */
 class Solution {
     
-    public int countNodes(TreeNode root){
-        
-        if(root==null)
+    int countXLeft;
+    int countXRight;
+
+    public int size(TreeNode root, int x) {
+
+        if (root == null)
             return 0;
-        
-        int lc = countNodes(root.left);
-        int rc = countNodes(root.right);
-        
-        return lc+rc+1;
+
+        int lc = size(root.left, x);
+        int rc = size(root.right, x);
+
+        if (root.val == x) {
+
+            countXLeft = lc;
+            countXRight = rc;
+        }
+
+        return lc + rc + 1;
     }
-    
+
     public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
         
-        if(root==null)
-            return false;
+        size(root,x);
         
-        if(root.val==x){
-            
-            int op1 = countNodes(root.left);
-            int op2 = countNodes(root.right);
-            int op3 = n-op1-op2-1;
-            
-            int max = Math.max(op1,Math.max(op2,op3));
-            
-            if(max>n/2) 
-                return true;
-            
-            return false;
-        }
-        
-        boolean left = btreeGameWinningMove(root.left,n,x);
-        boolean right = btreeGameWinningMove(root.right,n,x);
-        
-        return left||right;
+        int parentCount = n - (countXLeft + countXRight + 1);
+        int max = Math.max(parentCount, Math.max(countXLeft, countXRight));
+
+        int restCount = n - max;
+
+        if (max > n/2)
+            return true;
+
+        return false;
     }
 }
