@@ -129,39 +129,28 @@ class Tree
           if(root==null)
           return new ArrayList<>();
            //add your code here.
-           maxd = 0;
-           
-           HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
-           
+          
+           Queue<Node> q = new LinkedList<>();
            ArrayList<Integer> res = new ArrayList<>();
            
-           helper(root,0,map);
+           q.add(root);
            
-           for(int d=0; d<=maxd; d++){
+           while(q.size()!=0){
                
-               List<Integer> temp = map.get(d);
+               Node rm = q.remove();
                
-               for(int val : temp)
-               res.add(val);
+               while(rm!=null){
+                   
+                   res.add(rm.data);
+                   
+                   if(rm.left!=null)
+                   q.add(rm.left);
+                   
+                   rm = rm.right;
+               }
            }
            
            return res;
       }
       
-      public void helper(Node root, int depth, HashMap<Integer,ArrayList<Integer>> map){
-          
-          if(root==null)
-          return;
-          
-          if(depth>maxd)
-          maxd = depth;
-          
-          if(!map.containsKey(depth))
-          map.put(depth,new ArrayList<>());
-          
-          map.get(depth).add(root.data);
-          
-          helper(root.left,depth+1,map);
-          helper(root.right,depth,map);
-      }
 }
