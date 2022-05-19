@@ -18,18 +18,42 @@ class Solution {
         
         List<Integer> list = new ArrayList<>();
         
-        dfs(root,list);
+        TreeNode curr = root;
+        
+        while(curr!=null){
+            
+            //if left is null
+            if(curr.left==null){
+                
+                list.add(curr.val);
+                curr = curr.right;
+            }
+            
+            else{
+                
+                TreeNode iop = curr.left;
+                while(iop.right!=null && iop.right!=curr){
+                    
+                    iop = iop.right;
+                }
+                
+                //iop -> Inorder Predecessor
+                if(iop.right==null){
+                    
+                    //Making a thread
+                    iop.right = curr;
+                    curr = curr.left;
+                }
+                
+                else{
+                    
+                    // iop.right = null;
+                    list.add(curr.val);
+                    curr = curr.right;
+                }
+            }
+        }
         
         return list;
-    }
-    
-    public void dfs(TreeNode root, List<Integer> list){
-        
-        if(root==null)
-            return;
-        
-        dfs(root.left,list);
-        list.add(root.val);
-        dfs(root.right,list);
     }
 }
