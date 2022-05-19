@@ -47,7 +47,7 @@ class Solution {
                 
                 else{
                     
-                    // iop.right = null;
+                    iop.right = null;
                     list.add(curr.val);
                     curr = curr.right;
                 }
