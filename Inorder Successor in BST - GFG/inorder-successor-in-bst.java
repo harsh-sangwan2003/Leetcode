@@ -124,54 +124,39 @@ class Node{
 */
 class Solution
 {
+    Node prev;
+    boolean flag;
     // returns the inorder successor of the Node x in BST (rooted at 'root')
 	public Node inorderSuccessor(Node root,Node x)
-         {
+    {
           //add code here.
-           Node curr = root;
-           Node prev = null;
-           
-        while (curr != null) {
-
-            // if left is null
-            if (curr.left == null) {
-
-                if(prev==x)
-                return curr;
-                
-                prev = curr;
-                curr = curr.right;
-            }
-
-            else {
-
-                Node iop = curr.left;
-                while (iop.right != null && iop.right != curr) {
-
-                    iop = iop.right;
-                }
-
-                // iop -> Inorder Predecessor
-                if (iop.right == null) {
-
-                    // Making a thread
-                    iop.right = curr;
-                    curr = curr.left;
-                }
-
-                else {
-
-                    iop.right = null;
-                    
-                    if(prev==x)
-                    return curr;
-                    
-                    prev = curr;
-                    curr = curr.right;
-                }
-            }
+         
+          prev = null;
+          flag = false;
+          
+          helper(root,x);
+          
+          return prev;
+    }
+    
+    public void helper(Node root, Node x){
+        
+        if(root==null)
+        return;
+        
+        helper(root.left,x);
+        
+        if(flag){
+            
+            prev = root;
+            flag = false;
         }
         
-        return null;
-         }
+        if(root==x)
+        {
+            flag = true;
+        }
+        
+        helper(root.right,x);
+    }
 }
