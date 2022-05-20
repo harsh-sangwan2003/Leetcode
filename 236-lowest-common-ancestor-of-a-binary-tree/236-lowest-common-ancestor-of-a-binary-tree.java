@@ -1,66 +1,58 @@
-//  Definition for a binary tree node.
-// class TreeNode {
-//     int val;
-//     TreeNode left;
-//     TreeNode right;
-
-//     TreeNode(int x) {
-//         val = x;
-//     }
-// }
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 class Solution {
-
-    public ArrayList<TreeNode> nodeToRootPath(TreeNode node, int data) {
-        // write your code here
-        if (node == null)
+    
+    private List<TreeNode> find(TreeNode root, TreeNode node){
+        
+        if(root==null)
             return new ArrayList<>();
-
-        if (node.val == data) {
-
-            ArrayList<TreeNode> bres = new ArrayList<>();
-            bres.add(node);
+        
+        if(root==node){
+            
+            List<TreeNode> bres = new ArrayList<>();
+            bres.add(root);
             return bres;
         }
-
-        ArrayList<TreeNode> left = nodeToRootPath(node.left, data);
-        if (left.size() > 0) {
-
-            left.add(node);
+        
+        List<TreeNode> left = find(root.left,node);
+        if(left.size()!=0){
+            
+            left.add(root);
             return left;
         }
-
-        ArrayList<TreeNode> right = nodeToRootPath(node.right, data);
-        if (right.size() != 0) {
-
-            right.add(node);
+        
+        List<TreeNode> right = find(root.right,node);
+        if(right.size()!=0){
+            
+            right.add(root);
             return right;
         }
-
+        
         return new ArrayList<>();
     }
-
+    
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-        ArrayList<TreeNode> p1 = nodeToRootPath(root, p.val);
-        ArrayList<TreeNode> p2 = nodeToRootPath(root, q.val);
-
-        int i = p1.size() - 1;
-        int j = p2.size() - 1;
-        TreeNode LCA = null;
-
-        while (i >= 0 && j >= 0) {
-
-            if (p1.get(i).val != p2.get(j).val)
-                break;
-
-            LCA = p1.get(i);
-
+        
+        List<TreeNode> list1 = find(root,p);
+        List<TreeNode> list2 = find(root,q);
+        
+        int i = list1.size()-1;
+        int j = list2.size()-1;
+        
+        while(i>=0 && j>=0 && list1.get(i)==list2.get(j)){
+            
             i--;
             j--;
         }
-
-        return LCA;
-
+        
+        i++;
+        return list1.get(i);
     }
 }
