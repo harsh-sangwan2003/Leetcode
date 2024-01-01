@@ -1,4 +1,4 @@
-# Data Structures And Algorithms - Java
+# Leetcode
 
 A quick guide to my Project ->
 
@@ -8,7 +8,3 @@ A quick guide to my Project ->
 
 - Java
 - DSA 
-
-## Usage
-
-This project consists of all DSA question (level-wise).
