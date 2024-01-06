@@ -3,16 +3,16 @@ class Solution {
 
         int count = 0;
 
-        for(int s=0; s<nums.length; s++){
+        for (int s = 0; s < nums.length; s++) {
 
             int sum = 0;
 
-            for(int e=s; e<nums.length; e++){
+            for (int e = s; e < nums.length; e++) {
 
                 sum += nums[e];
 
-                if(sum==k)
-                count++;
+                if (sum == k)
+                    count++;
             }
         }
 
