@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-class Solution {
+public class sol2 {
 
     public class Pair implements Comparable<Pair> {
 
