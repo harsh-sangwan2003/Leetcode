@@ -1,4 +1,5 @@
-class Solution {
+class sol {
+
     public boolean searchMatrix(int[][] arr, int tar) {
 
         int r = 0, c = arr[0].length - 1;
